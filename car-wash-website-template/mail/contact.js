@@ -1,17 +1,4 @@
 $(function () {
-    $("#contactForm input, #contactForm textarea").jqBootstrapValidation({
-        preventSubmit: true,
-        submitError: function ($form, event, errors) {
-            // Error handling code
-            $('#success').html("<div class='alert alert-danger'>");
-            $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;</button>");
-            $('#success > .alert-danger').append("<strong>Sorry, it seems that our mail server is not responding. Please try again later!</strong>");
-            $('#success > .alert-danger').append('</div>');
-        },
-        filter: function () {
-            return $(this).is(":visible");
-        },
-    });
 
     // Custom validation for email format
     $("#email").on("input", function () {
