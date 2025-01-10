@@ -148,7 +148,7 @@ a:focus {
 /**********************************/
 .top-bar {
     position: relative;
-    height: 100px;
+    height: 70px;
     display: flex;
     align-items: center;
     background: #ffffff;
@@ -182,6 +182,8 @@ a:focus {
     display: flex;
     align-items: center;
     justify-items: center;
+    flex-direction: row;
+    width: 100%;
 }
 
 .top-bar .top-bar-icon {
