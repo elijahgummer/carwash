@@ -402,7 +402,7 @@
           <div class="col-lg-5">
             <div class="location-form">
                 <h3>Request for a car wash</h3>
-                <form action="send_email.php" method="post">
+                <form action="/api/send_email" method="post">
                   <div class="control-group">
                     <input type="text" name="name" class="form-control" placeholder="Name" required="required" />
                   </div>
@@ -553,5 +553,41 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+        const nodemailer = require('nodemailer');
+
+export default async function (req, res) {
+  if (req.method === 'POST') {
+    const { name, email, description } = req.body;
+
+    // Create a transporter object using the default SMTP transport
+    let transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: 'your-email@gmail.com', // Replace with your email
+        pass: 'your-email-password', // Replace with your email password
+      },
+    });
+
+    // Set up email data
+    let mailOptions = {
+      from: email,
+      to: 'elijahgummer5@gmail.com', // Your email address
+      subject: 'New Appointment Request',
+      text: `Name: ${name}\nEmail: ${email}\nDescription: ${description}`,
+    };
+
+    // Send mail with defined transport object
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return res.status(500).json({ error: error.toString() });
+      }
+      res.status(200).json({ message: 'Your request has been sent successfully!' });
+    });
+  } else {
+    res.status(405).json({ message: 'Method not allowed' });
+  }
+}
+    </script>
   </body>
 </html>
