@@ -148,7 +148,7 @@ a:focus {
 /**********************************/
 .top-bar {
     position: relative;
-    height: 75px;
+    height: 100px;
     display: flex;
     align-items: center;
     background: #ffffff;
@@ -181,7 +181,7 @@ a:focus {
 .top-bar .top-bar-item {
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    justify-items: center;
 }
 
 .top-bar .top-bar-icon {
@@ -201,7 +201,12 @@ a:focus {
 }
 
 .top-bar .top-bar-text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     padding-left: 15px;
+    width: 100%;
 }
 
 .top-bar .top-bar-text h3 {
@@ -210,10 +215,11 @@ a:focus {
     font-weight: 600;
 }
 
-.top-bar .top-bar-text p {
+.top-bar-text p {
     margin: 0;
-    font-size: 14px;
-    font-weight: 400;
+    font-size: 12PX;
+    padding: 5px 0;
+    line-height: 1.5;
 }
 
 @media (max-width: 991.98px) {
