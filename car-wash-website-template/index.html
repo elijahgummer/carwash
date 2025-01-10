@@ -403,6 +403,7 @@
             <div class="location-form">
               <h3>Request for a car wash</h3>
               <form action="https://formsubmit.co/elijahgummer5@gmail.com" method="POST">
+                <!-- Name Field -->
                 <div class="control-group">
                   <input
                     type="text"
@@ -412,32 +413,42 @@
                     required="required"
                   />
                 </div>
+              
+                <!-- Email Field -->
                 <div class="control-group">
                   <input
                     type="email"
                     name="_replyto"
                     class="form-control"
-                    placeholder="Email"
+                    placeholder="Email Address"
                     required="required"
                   />
                 </div>
+              
+                <!-- Description Field -->
                 <div class="control-group">
                   <textarea
                     class="form-control"
+                    name="description"
                     placeholder="Description"
                     required="required"
-                    name="description"
                   ></textarea>
                 </div>
+              
+                <!-- Hidden Fields -->
                 <input type="hidden" name="_next" value="https://carwash-five.vercel.app/thanks.html">
+                <input type="hidden" name="_subject" value="Car Wash Booking Confirmation">
+                <input type="hidden" name="_cc" value="motiv8xnow@gmail.com">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_autoresponse" value="Thank you for booking your car wash! If you need to cancel, please reply to this email.">
+                <input type="hidden" name="_template" value="table">
+              
+                <!-- Submit Button -->
                 <div>
-                  <button class="btn btn-custom" type="submit">
-                    Send Request
-                  </button>
+                  <button class="btn btn-custom" type="submit">Send Request</button>
                 </div>
               </form>
-            </div>
-          </div>
+              
         </div>
       </div>
     </div>
