@@ -61,6 +61,16 @@
         background-color: #202C45;
         color: #fff;
       }
+      .total-amount {
+        font-size: 20px;
+        color: #202C45;
+        margin-top: 20px;
+      }
+      .payment-note {
+        font-size: 16px;
+        color: #555;
+        margin-top: 10px;
+      }
     </style>
   </head>
 
@@ -157,10 +167,10 @@
         </div>
         <div class="form-group">
           <label for="wash-type">Choose Wash Type</label>
-          <select class="form-control" id="wash-type" name="wash_type" required="required">
-            <option value="quick">Quick Wash</option>
-            <option value="deluxe">Deluxe Wash</option>
-            <option value="premium">Premium Wash</option>
+          <select class="form-control" id="wash-type" name="wash_type" required="required" onchange="updateTotal()">
+            <option value="quick" data-price="20">Quick Wash - $20</option>
+            <option value="deluxe" data-price="40">Deluxe Wash - $40</option>
+            <option value="premium" data-price="60">Premium Wash - $60</option>
           </select>
         </div>
         <div class="form-group">
@@ -187,6 +197,8 @@
         <input type="hidden" name="_captcha" value="false">
         <button type="submit" class="btn btn-custom">Submit Booking</button>
       </form>
+      <div class="total-amount" id="total-amount">Total: $20</div>
+      <div class="payment-note">Please note: We only accept cash payments once the job is finished.</div>
     </div>
     <!-- Booking Form End -->
 
@@ -264,5 +276,14 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+    <script>
+      function updateTotal() {
+        const washType = document.getElementById('wash-type');
+        const selectedOption = washType.options[washType.selectedIndex];
+        const price = selectedOption.getAttribute('data-price');
+        document.getElementById('total-amount').innerText = `Total: $${price}`;
+      }
+      document.addEventListener('DOMContentLoaded', updateTotal);
+    </script>
   </body>
 </html>
