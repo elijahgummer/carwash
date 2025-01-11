@@ -156,7 +156,7 @@
     <!-- Booking Form Start -->
     <div class="container booking-container">
       <h1>Book a Car Wash</h1>
-      <form action="https://formsubmit.co/elijahgummer5@gmail.com" method="POST">
+      <form action="https://formsubmit.co/elijahgummer5@gmail.com" method="POST" onsubmit="return validateBooking()">
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Your Name" required="required" />
@@ -168,9 +168,9 @@
         <div class="form-group">
           <label for="wash-type">Choose Wash Type</label>
           <select class="form-control" id="wash-type" name="wash_type" required="required" onchange="updateTotal()">
-            <option value="quick" data-price="15">Quick Wash - $15</option>
-            <option value="deluxe" data-price="25">Deluxe Wash - $25</option>
-            <option value="premium" data-price="35">Premium Wash - $35</option>
+            <option value="quick" data-price="20">Quick Wash - $20</option>
+            <option value="deluxe" data-price="40">Deluxe Wash - $40</option>
+            <option value="premium" data-price="60">Premium Wash - $60</option>
           </select>
         </div>
         <div class="form-group">
@@ -284,6 +284,37 @@
         const price = selectedOption.getAttribute('data-price');
         document.getElementById('total-amount').innerText = `Total: $${price}`;
       }
+
+      function validateBooking() {
+        const date = new Date(document.getElementById('date').value);
+        const time = document.getElementById('time').value;
+        const day = date.getDay();
+        const hour = parseInt(time.split(':')[0]);
+
+        // Monday: 8AM - 6PM
+        if (day === 1 && (hour < 8 || hour > 18)) {
+          alert('On Mondays, bookings are only available between 8AM and 6PM.');
+          return false;
+        }
+        // Tuesday to Thursday: 4PM - 7PM
+        if (day >= 2 && day <= 4 && (hour < 16 || hour > 19)) {
+          alert('From Tuesday to Thursday, bookings are only available between 4PM and 7PM.');
+          return false;
+        }
+        // Friday: 4PM - 8PM
+        if (day === 5 && (hour < 16 || hour > 20)) {
+          alert('On Fridays, bookings are only available between 4PM and 8PM.');
+          return false;
+        }
+        // Saturday and Sunday: 8AM - 6PM
+        if ((day === 6 || day === 0) && (hour < 8 || hour > 18)) {
+          alert('On Saturdays and Sundays, bookings are only available between 8AM and 6PM.');
+          return false;
+        }
+
+        return true;
+      }
+
       document.addEventListener('DOMContentLoaded', updateTotal);
     </script>
   </body>
